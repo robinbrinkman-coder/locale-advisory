@@ -1,4 +1,4 @@
-```json
+
 {
   "name": "locale-advisory",
   "private": true,
@@ -26,4 +26,4 @@
     "autoprefixer": "^10.4.20"
   }
 }
-```
+
