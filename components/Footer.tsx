@@ -1,4 +1,4 @@
-mport { Logo } from './Logo';
+import { Logo } from './Logo';
 
 export function Footer() {
   return (
