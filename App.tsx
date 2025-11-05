@@ -1,16 +1,6 @@
-import { Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
-import Home from "./pages/Home";
-import Insights from "./pages/Insights";
+import Home from "./pages/Home";  // adjust this path if your Home.tsx lives somewhere else
 
 export default function App() {
-  return (
-    <>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/insights" element={<Insights />} />
-      </Routes>
-    </>
-  );
+  // Provide a dummy onNavigate so Home works even if it's expecting one
+  return <Home onNavigate={() => {}} />;
 }
