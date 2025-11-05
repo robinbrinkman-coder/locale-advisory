@@ -1,5 +1,22 @@
+import { Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
 import Home from "./pages/Home";
+import About from "./pages/About";
+import Services from "./pages/Services";
+import Insights from "./pages/Insights";
+import Contact from "./pages/Contact";
 
 export default function App() {
-  return <Home onNavigate={() => {}} />;
+  return (
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home onNavigate={() => {}} />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/insights" element={<Insights />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </>
+  );
 }
