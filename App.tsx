@@ -1,6 +1,6 @@
 import { Routes, Route, Link } from "react-router-dom";
-import Home from "./pages/Services"; // temporarily using your Services page as the home display
-import Insights from "./pages/Insights"; // you'll create this file next
+import Home from "./pages/Home";          // <-- use your existing Home.tsx
+import Insights from "./pages/Insights";  // <-- the page you just built
 
 export default function App() {
   return (
