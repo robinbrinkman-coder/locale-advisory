@@ -1,5 +1,45 @@
-css
-   @import "tailwindcss";
-   @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap');
-   
-   @custom-variant dark (&:is(.dark *));
+/* ========== Locale Advisory – Global Styles ========== */
+
+:root {
+  --brown: #4A372A;
+  --sand:  #F4EDE2;
+  --ochre: #E6B450;
+  --teal:  #0C736B;
+}
+
+/* Base */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: var(--sand);
+  color: var(--brown);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "Sarabun", system-ui, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+
+/* Links & buttons */
+a { color: inherit; text-decoration: none; }
+a:hover { opacity: 0.85; }
+
+/* Utility spacing */
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 64px 24px;
+}
+
+/* Cards used on Insights */
+.card {
+  background: #fff;
+  border: 1px solid color-mix(in oklab, var(--ochre) 33%, transparent);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+/* Typography helpers */
+.h1 { font-weight: 700; font-size: 2rem; margin: 0 0 8px; }
+.p  { opacity: 0.85; margin: 0 0 24px; }
+.small { font-size: 12px; letter-spacing: .3px; }
+.small.ochre { color: var(--ochre); }
