@@ -1,11 +1,24 @@
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { Button } from '../components/Button';
+import { useNavigate } from 'react-router-dom';
 
 interface HomeProps {
-  onNavigate: (page: string) => void;
+  onNavigate?: (page: string) => void; // make optional so App.tsx can render <Home />
 }
 
-export function Home({ onNavigate }: HomeProps) {
+function Home({ onNavigate }: HomeProps) {
+  const navigate = useNavigate();
+
+  // Fallback to React Router if onNavigate isn't provided
+  const go = (page: string) => {
+    if (onNavigate) {
+      onNavigate(page);
+    } else {
+      // route to /contact, /about, /insights, etc.
+      navigate(`/${page}`);
+    }
+  };
+
   return (
     <div className="max-w-[1440px] mx-auto">
       {/* Hero Section */}
@@ -13,9 +26,9 @@ export function Home({ onNavigate }: HomeProps) {
         <div className="lg:col-span-6">
           <h1 className="mb-6">Smarter space decisions.</h1>
           <p className="mb-8 md:mb-12 opacity-70 text-lg leading-relaxed">
-            Independent tenant advisory for Sydney's most forward-thinking businesses.
+            Independent tenant advisory for Sydney&apos;s most forward-thinking businesses.
           </p>
-          <Button onClick={() => onNavigate('contact')}>Start your brief</Button>
+          <Button onClick={() => go('contact')}>Start your brief</Button>
         </div>
         <div className="lg:col-span-6">
           <ImageWithFallback
@@ -56,13 +69,13 @@ export function Home({ onNavigate }: HomeProps) {
           <div className="lg:col-span-6">
             <h2 className="mb-6">Independent. Intelligent. Sydney cool.</h2>
             <p className="opacity-70 leading-relaxed mb-6">
-              At Locale Advisory, we believe the best property outcomes come from alignment — not opposition. Our role is to act as a strategic extension of the tenant's team, helping navigate leasing decisions with clarity, insight, and confidence.
+              At Locale Advisory, we believe the best property outcomes come from alignment — not opposition. Our role is to act as a strategic extension of the tenant&apos;s team, helping navigate leasing decisions with clarity, insight, and confidence.
             </p>
             <p className="opacity-70 leading-relaxed mb-6">
-              With experience across Sydney's CBD and city-fringe markets, Locale brings together data-driven analysis, creative thinking, and genuine local knowledge to help businesses find — and create — spaces that truly work for them.
+              With experience across Sydney&apos;s CBD and city-fringe markets, Locale brings together data-driven analysis, creative thinking, and genuine local knowledge to help businesses find — and create — spaces that truly work for them.
             </p>
             <button 
-              onClick={() => onNavigate('about')}
+              onClick={() => go('about')}
               className="text-[#E6B450] hover:underline"
             >
               Learn more →
@@ -82,7 +95,7 @@ export function Home({ onNavigate }: HomeProps) {
       <section className="px-6 md:px-12 lg:px-[120px] py-16 md:py-24 lg:py-[120px] bg-[#FAF9F7]">
         <h2 className="mb-8 md:mb-12">Latest Insights</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-12 gap-6">
-          <div className="md:col-span-1 lg:col-span-4 group cursor-pointer" onClick={() => onNavigate('insights')}>
+          <div className="md:col-span-1 lg:col-span-4 group cursor-pointer" onClick={() => go('insights')}>
             <div className="relative overflow-hidden rounded">
               <ImageWithFallback
                 src="https://www.dropbox.com/scl/fi/p3i1j8mneb5eexz529m0u/getty-images-XPbHfJovRJE-unsplash.jpg?rlkey=t4jzhg2t9hkwa7rgejkely14h&st=d4g05tna&raw=1"
@@ -92,7 +105,7 @@ export function Home({ onNavigate }: HomeProps) {
               <div className="absolute inset-0 bg-[#E6B450] opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
             </div>
           </div>
-          <div className="md:col-span-1 lg:col-span-4 group cursor-pointer" onClick={() => onNavigate('insights')}>
+          <div className="md:col-span-1 lg:col-span-4 group cursor-pointer" onClick={() => go('insights')}>
             <div className="relative overflow-hidden rounded">
               <ImageWithFallback
                 src="https://www.dropbox.com/scl/fi/e8cdx9imh4a3c5lhyyjv8/phillip-flores-qTKGE9R3SYA-unsplash.jpg?rlkey=uw0mz1gqhon6nu46vp2xhe7kl&st=cl5jt1pc&raw=1"
@@ -102,7 +115,7 @@ export function Home({ onNavigate }: HomeProps) {
               <div className="absolute inset-0 bg-[#E6B450] opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
             </div>
           </div>
-          <div className="md:col-span-1 lg:col-span-4 group cursor-pointer" onClick={() => onNavigate('insights')}>
+          <div className="md:col-span-1 lg:col-span-4 group cursor-pointer" onClick={() => go('insights')}>
             <div className="relative overflow-hidden rounded">
               <ImageWithFallback
                 src="https://www.dropbox.com/scl/fi/yjrsepzincq0cvf1pkj7a/bee-balogun-4GRdEZ7Wots-unsplash.jpg?rlkey=3km2eh3fr65lf5ftpz8lchl01&st=afkrs15s&raw=1"
@@ -118,9 +131,11 @@ export function Home({ onNavigate }: HomeProps) {
       {/* Final CTA */}
       <section className="px-6 md:px-12 lg:px-[120px] py-16 md:py-24 lg:py-[120px] text-center">
         <h2 className="mb-6">Planning a move or renewal?</h2>
-        <p className="opacity-70 mb-8 text-lg">Let's discuss your options.</p>
-        <Button onClick={() => onNavigate('contact')}>Start your brief</Button>
+        <p className="opacity-70 mb-8 text-lg">Let&apos;s discuss your options.</p>
+        <Button onClick={() => go('contact')}>Start your brief</Button>
       </section>
     </div>
   );
 }
+
+export default Home;
