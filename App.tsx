@@ -1,59 +1,21 @@
-import { useState, useEffect } from 'react';
-import { Navigation } from './components/Navigation';
-import { Footer } from './components/Footer';
-import { Home } from './pages/Home';
-import { About } from './pages/About';
-import { Services } from './pages/Services';
-import { Insights } from './pages/Insights';
-import { Contact } from './pages/Contact';
+import { Routes, Route, Link } from "react-router-dom";
+import Home from "./pages/Services"; // temporarily using your Services page as the home display
+import Insights from "./pages/Insights"; // you'll create this file next
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState('home');
-
-  // Handle hash navigation
-  useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.slice(1);
-      if (hash && ['home', 'about', 'services', 'insights', 'contact'].includes(hash)) {
-        setCurrentPage(hash);
-      } else if (!hash) {
-        // If no hash, default to home
-        setCurrentPage('home');
-        window.location.hash = 'home';
-      }
-    };
-
-    handleHashChange();
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
-
-  const handleNavigate = (page: string) => {
-    setCurrentPage(page);
-    window.location.hash = page;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const renderPage = () => {
-    switch (currentPage) {
-      case 'about':
-        return <About />;
-      case 'services':
-        return <Services />;
-      case 'insights':
-        return <Insights />;
-      case 'contact':
-        return <Contact />;
-      default:
-        return <Home onNavigate={handleNavigate} />;
-    }
-  };
-
   return (
-    <div className="bg-[#F4EDE2] text-[#4A372A] min-h-screen">
-      <Navigation currentPage={currentPage} onNavigate={handleNavigate} />
-      <main>{renderPage()}</main>
-      <Footer />
-    </div>
+    <>
+      <header style={{ padding: 16 }}>
+        <nav style={{ display: "flex", gap: 16 }}>
+          <Link to="/">Home</Link>
+          <Link to="/insights">Insights</Link>
+        </nav>
+      </header>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/insights" element={<Insights />} />
+      </Routes>
+    </>
   );
 }
