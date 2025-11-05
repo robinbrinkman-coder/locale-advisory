@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 /* ========== Locale Advisory – Global Styles ========== */
 
@@ -27,6 +25,7 @@ body {
   margin: 0 auto;
   padding: 64px 24px;
 }
+
 .card {
   @apply bg-white border rounded-xl p-5;
   border-color: color-mix(in oklab, var(--ochre) 33%, transparent);
